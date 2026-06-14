@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Weather.css";
 import axios from "axios";
+import FormattedDate from "./FormattedDate"
 
 export default function Weather() {
     const [weatherData, setWeatherData] = useState({ ready: false })
@@ -11,8 +12,10 @@ export default function Weather() {
             temperature: response.data.temperature.current,
             city: response.data.city,
             wind: response.data.wind.speed,
+            iconUrl: "http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-night.png",
             humidity: response.data.temperature.humidity,
-            condition: response.data.condition.description
+            condition: response.data.condition.description,
+            date: new Date(response.data.time * 1000)
         })
     }
 
@@ -31,15 +34,17 @@ export default function Weather() {
             </form>
             <h1>{weatherData.city}</h1>
             <ul>
-                <li>Sunday 15:30</li>
+                <li>
+                    <FormattedDate date={weatherData.date} />
+                    </li>
                 <li className="text-capitalize">{weatherData.condition}</li>
             </ul>
             <div className="row">
                <div className="col-6">
                 <div className="temperature-container">
                     <img
-                    src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/few-clouds-day.png"
-                    alt="few-clouds-day"
+                    src={weatherData.iconUrl}
+                    alt={weatherData.condition}
                     />
                     <span className="temperature">{Math.round(weatherData.temperature)}</span>
                     <span className="unit">°C | °F</span>
