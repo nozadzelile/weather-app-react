@@ -9,7 +9,7 @@ export default function App() {
     <div className="App">
       <div className= "container">
         <Weather defaultCity="Barcelona" />
-      <footer>This project is made by Lile Nozadze and is <a href="https://github.com/nozadelile/weather-app" target="_blank" rel="noopener noreferrer">
+      <footer>This project is made by Lile Nozadze and is <a href="https://github.com/nozadzelile/weather-app-react" target="_blank" rel="noopener noreferrer">
         open-source on Github
       </a>
       </footer>
